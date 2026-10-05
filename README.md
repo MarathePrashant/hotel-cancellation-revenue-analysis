@@ -1,75 +1,55 @@
-# 🏨 Hotel Booking Cancellation Analysis & Revenue Recovery
+# 🏨 Hotel Booking Cancellation & Revenue Risk Diagnostics
 
-![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![SQL](https://img.shields.io/badge/SQL-CC292B?style=for-the-badge&logo=sqlite&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+[![Python](https://img.shields.io/badge/Python-EDA%20%26%20Pandas-3776AB?style=flat-square\&logo=python)](#)
+[![Seaborn](https://img.shields.io/badge/Seaborn-Data_Visualization-4c72b0?style=flat-square)](#)
+[![Status](https://img.shields.io/badge/Status-Completed-success?style=flat-square)](#)
 
-> **Business Objective:** Diagnose cancellation drivers across 118,000+ booking records to mitigate a 37.14% cancellation rate representing an estimated $25.91M in revenue exposure.
+## 📌 Executive Summary & Business Problem
 
----
+High booking cancellation rates can create challenges for hospitality businesses by reducing occupancy predictability, affecting staffing and resource planning, and increasing revenue uncertainty.
 
-## 📌 Executive Summary
-High cancellation rates destabilize hotel operations, lead to suboptimal room pricing, and cause substantial unrecoverable revenue loss. This project investigates booking records from both City and Resort hotels over a multi-year window. 
+This project analyzes **118,000+ hotel reservation records** to identify the key factors associated with booking cancellations and evaluate how booking behavior, lead time, customer characteristics, pricing, and distribution channels influence cancellation risk.
 
-By combining **Python (Pandas, Seaborn)** for exploratory data cleaning and statistical analysis, **SQL** for relational metric aggregations, and **Power BI (DAX)** for interactive reporting, this analysis identifies the key drivers of cancellations and provides actionable pricing and operational strategies for hotel leadership.
+## 🛠️ Data Pipeline & Technical Approach
 
----
+* **Data Cleaning & Preparation:** Handled missing values across agent, company, and country fields, identified pricing anomalies such as negative ADR values, and converted date-related fields into appropriate datetime formats.
+* **Behavioral Cohort Analysis:** Segmented booking cancellation behavior across lead-time groups, customer types, distribution channels, deposit types, and hotel categories.
+* **Risk Analysis:** Examined relationships between cancellations, Average Daily Rate (ADR), lead time, room allocation changes, previous bookings, and special requests.
+* **Exploratory Data Analysis:** Used Pandas, Matplotlib, and Seaborn to identify cancellation patterns, customer behavior, seasonal trends, and potential revenue risks.
 
-## 📊 Interactive Dashboard Preview
-
-*(Add a screenshot of your Power BI dashboard here. You can drag and drop an image directly into GitHub's editor)*
-
-> **Interactive Report:** *(Optional: Insert link to Power BI Service / NovyPro live report if published)*
-
----
-
-## 🎯 Key Business Metrics & KPIs Analyzed
-
-| Metric | Recorded Value | Business Implication |
-| :--- | :--- | :--- |
-| **Total Analyzed Records** | 118,000+ | Large-scale sample across City & Resort hotels |
-| **Overall Cancellation Rate** | **37.14%** | More than 1 in 3 bookings failed to materialize |
-| **Estimated Revenue Loss** | **~$25.91M** | Total pipeline value lost due to cancellations |
-| **Average Daily Rate (ADR)** | Analyzed by Segment | Dynamic pricing fluctuations impact booking stability |
-| **Lead Time Threshold** | Critical inflection at >60 days | Longer lead times correlated with steep cancellation increases |
-
----
-
-## 🔍 Key Findings & Root Cause Analysis
-
-1. **Lead Time Correlation:** 
-   - Bookings made **60+ days in advance** exhibited significantly higher cancellation rates compared to short-notice bookings (<14 days), as traveler schedules remain fluid without upfront financial commitment.
-2. **Deposit Policy Anomalies:** 
-   - Analysis revealed counter-intuitive patterns where specific distribution channels with non-refundable deposits had elevated cancellations, primarily tied to bulk corporate or intermediary agency blocks rather than direct individual guests.
-3. **Distribution Channel Vulnerability:** 
-   - Online Travel Agencies (OTAs) accounted for the largest volume of gross bookings but also exhibited the highest cancellation churn relative to direct hotel website bookings.
-4. **Repeated Guest Loyalty:** 
-   - Repeat visitors had a cancellation rate below 15%, proving that direct customer relationship management strongly protects booked revenue.
-
----
-
-## 💡 Strategic Recommendations for Management
-
-* **Dynamic Overbooking Thresholds:** Implement dynamic overbooking limits tied to lead time and season—allowing higher buffer capacity during peak OTA reservation windows to maintain target occupancy.
-* **Tiered Non-Refundable Discounts:** Offer a small targeted rate discount (e.g., 5–8% off ADR) for guests who select a non-refundable rate upfront for bookings made >45 days in advance.
-* **Pre-Arrival Engagement Automation:** Deploy automated confirmation touchpoints at 30 days, 14 days, and 3 days prior to arrival for high-lead-time reservations to encourage itinerary confirmation or early release.
-* **Incentivize Direct Bookings:** Promote direct-booking loyalty perks (complimentary breakfast, free room upgrade eligibility) to shift volume away from high-churn OTA channels toward direct channels.
-
----
-
-## 🛠️ Tech Stack & Workflow
+## 📂 Project Structure
 
 ```text
-├── Data Extraction & Cleaning  --> Python (Pandas, NumPy)
-│                                 - Handled missing values (children, agent, company)
-│                                 - Removed undefined meal/distribution categories
-│                                 - Created engineered features (lead time bins, total stay duration)
-│
-├── Relational Querying         --> SQL (Aggregations, CTEs, Window Functions)
-│                                 - Segmented cancellation ratios across hotel types and seasons
-│
-└── Business Intelligence       --> Power BI
-                                  - Star Schema Data Modeling
-                                  - Custom DAX Measures (Cancellation Rate %, Revenue Loss, ADR Variance)
-                                  - Dynamic Filter Slicers by Market Segment, Deposit Type & Date
+├── data/               # Raw and transformed hotel booking datasets
+├── notebooks/          # Jupyter Notebook covering data cleaning and EDA
+├── visuals/            # Cancellation trends and analytical visualizations
+└── README.md           # Business impact, methodology, and key insights
+```
+
+## 📊 Key Business Insights
+
+* **Lead-Time Sensitivity:** Bookings made **more than 90 days in advance showed a significantly higher cancellation tendency** compared with short-lead bookings, highlighting lead time as an important cancellation-risk indicator.
+* **Deposit Policy Impact:** Cancellation behavior varied substantially across deposit types, indicating that booking commitment and payment policies can influence reservation reliability.
+* **Pricing Volatility:** Changes in Average Daily Rate (ADR), particularly during periods of higher demand, were associated with changes in cancellation behavior and potential rebooking activity.
+* **Special Requests:** Guests who made special requests demonstrated **lower cancellation propensity**, suggesting that greater guest engagement may be associated with stronger booking commitment.
+
+## 💡 Strategic Business Recommendations
+
+* **Dynamic Overbooking Strategy:** Use historical cancellation patterns and lead-time segments to establish data-driven overbooking thresholds while maintaining acceptable service-risk levels.
+* **Tiered Cancellation Policies:** Introduce progressive cancellation fees based on booking lead time and reservation characteristics rather than applying a single policy across all bookings.
+* **Pre-Arrival Guest Engagement:** Use automated reminders, digital check-in options, and preference surveys before arrival to increase guest engagement and reduce avoidable cancellations.
+* **Cancellation Risk Monitoring:** Develop a booking-risk segmentation model to identify high-risk reservations and support proactive revenue and occupancy management.
+
+## 🚀 How to Explore This Project
+
+1. **Review the EDA Notebook:** Open `/notebooks` to explore the complete data-cleaning process, exploratory analysis, feature preparation, and analytical workflow.
+2. **Review the Visualizations:** Open `/visuals` to examine cancellation trends, booking behavior, pricing patterns, and other key analytical findings.
+
+## 👤 Author
+
+**Prashant Marathe**
+
+* **LinkedIn:** https://www.linkedin.com/in/prashantmarathe17
+* **Portfolio:** https://prashant-marathe.framer.website/
+* **Email:** [p04747391@gmail.com](mailto:p04747391@gmail.com)
+* **Location:** Pune, Maharashtra, India
